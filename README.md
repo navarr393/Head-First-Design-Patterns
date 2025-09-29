@@ -27,10 +27,10 @@ The famous duck example that introduces:
 
 ## Running the Examples
 
-Since these are simple Dart files, you can run them directly:
+To run the complete Strategy Pattern example:
 
 ```bash
-dart run duck.dart
+dart run mini_duck_simulator.dart
 ```
 
 ## Java to Dart Translation Notes
