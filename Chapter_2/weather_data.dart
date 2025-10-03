@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 abstract class WeatherData {
   double getTemperature();
   double getHumidity();

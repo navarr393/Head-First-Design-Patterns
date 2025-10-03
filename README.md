@@ -18,12 +18,19 @@ Each chapter from the book will be implemented as separate files or directories:
 ### Chapter 1: Strategy Pattern (`duck.dart`)
 The famous duck example that introduces:
 - **Problem**: How inheritance can lead to inappropriate behavior sharing
+- **Definition**: Defines a family of algorithms, encapsultes each one and makes them interchangable. Strategy lets the algorithm vary idependently from clients that use it.
 - **Solution**: Strategy Pattern using composition and interfaces
 - **Key Concepts**: 
   - Encapsulating behaviors as separate classes
   - Runtime behavior changes
   - Composition over inheritance
   - IS-A vs HAS-A relationships
+
+## Chapter 2: Observer Pattern
+- **Definition**: The Observer Pattern defines a one-to-many dependency between objects so that when one object changes state, all of its dependents are notified and updated automatically.
+- **Key Concepts**: 
+  - Strive for loosely coupled designs between objects that interact.
+  - Loosley coupled objects are objects that are not dependent of other objects.
 
 ## Running the Examples
 
