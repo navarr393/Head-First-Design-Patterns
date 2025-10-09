@@ -4,28 +4,61 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Design Patterns repository containing implementations of classic object-oriented design patterns in Dart. Currently contains a Strategy Pattern implementation demonstrating behavioral composition over inheritance.
-
-## Code Architecture
-
-### Strategy Pattern Implementation (`duck.dart`)
-- **Behavioral Interfaces**: `FlyBehavior` and `QuackBehavior` define contracts for duck behaviors
-- **Concrete Strategies**: Multiple implementations for each behavior (e.g., `FlyWithWings`, `FlyNoWay`, `FlyRocketPowered`)
-- **Context Class**: Abstract `Duck` class uses composition to delegate behavior to strategy objects
-- **Concrete Contexts**: `MallardDuck` and `ModelDuck` inherit from `Duck` with different default behaviors
-- **Runtime Flexibility**: Behaviors can be changed at runtime using setter methods
+This repository contains Dart implementations of classic design patterns from "Head First Design Patterns" by Eric Freeman and Elisabeth Robson. It serves as an educational resource translating Java examples to idiomatic Dart while preserving core design concepts.
 
 ## Development Commands
 
-This is a simple Dart project without a package configuration. To run the code:
+This is a simple Dart project without package configuration. Run examples directly:
 
 ```bash
-dart run duck.dart
+# Strategy Pattern - Duck Simulator
+dart run Chapter_1/mini_duck_simlulator.dart
+
+# Strategy Pattern - Adventure Game
+dart run Chapter_1/Adventure_Game/run_simulator.dart
 ```
 
-## Architecture Principles
+## Code Architecture
 
-- **Composition over Inheritance**: Duck behaviors are composed rather than inherited
-- **Open/Closed Principle**: New behaviors can be added without modifying existing duck classes
-- **Encapsulation**: Each behavior is encapsulated in its own class
-- **Runtime Behavior Changes**: Strategies can be swapped dynamically using setter methods
+### Chapter Structure
+- **Chapter_1/**: Strategy Pattern implementations
+  - Duck simulator (main example)
+  - Adventure game (design puzzle)
+- **Chapter_2/**: Observer Pattern (in progress)
+
+### Strategy Pattern Architecture (Chapter_1/)
+
+#### Duck Simulator
+- **Abstract Context**: `Duck` class uses composition with behavior interfaces
+- **Behavior Contracts**: `FlyBehavior` and `QuackBehavior` abstract classes
+- **Concrete Strategies**: Multiple flight/quack implementations (e.g., `FlyWithWings`, `FlyNoWay`, `FlyRocketPowered`)
+- **Concrete Contexts**: `MallardDuck`, `ModelDuck` with different default behaviors
+- **Runtime Flexibility**: Behaviors changeable via setter methods
+
+#### Adventure Game
+- **Abstract Context**: `Character` class with weapon composition
+- **Behavior Contract**: `WeaponBehavior` abstract class
+- **Concrete Strategies**: Various weapon implementations (`SwordBehavior`, `AxeBehavior`, `KnifeBehavior`)
+- **Concrete Contexts**: `King`, `Queen` character types
+- **Dynamic Behavior**: Weapons can be swapped at runtime
+
+### Observer Pattern Architecture (Chapter_2/)
+- **Subject Interface**: Defines observer management contract
+- **WeatherData**: Subject implementation (in progress)
+- **Observer Interface**: Defines update contract (to be implemented)
+
+## Key Design Principles Demonstrated
+
+- **Encapsulate What Varies**: Behaviors isolated in separate strategy classes
+- **Composition over Inheritance**: Objects composed with behaviors rather than inheriting them
+- **Program to Interfaces**: Code depends on abstractions, not concrete implementations
+- **Open/Closed Principle**: New behaviors can be added without modifying existing classes
+- **Loose Coupling**: Minimal dependencies between objects that interact
+
+## Java to Dart Translation Patterns
+
+- Java `interface` → Dart `abstract class`
+- Private members use `_` prefix instead of `private` keyword
+- Constructor syntax is more concise in Dart
+- Arrow functions for single-expression methods
+- Sound null safety enabled by default
