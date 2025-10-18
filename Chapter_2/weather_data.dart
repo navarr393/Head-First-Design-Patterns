@@ -1,8 +1,21 @@
 // Subject 
+// ignore_for_file: unused_local_variable
+
+import 'current_conditions_display.dart';
+import 'heat_index_display.dart';
+
 abstract class Subject {
   void registerObserver(Observer o);
   void removeObserver(Observer o);
   void notifyObservers();
+}
+
+abstract class Observer {
+  void update(double temp, double humidity, double pressure);
+}
+
+abstract class DisplayElement {
+  void display();
 }
 
 class WeatherData implements Subject {
@@ -48,42 +61,14 @@ class WeatherData implements Subject {
   }
 }
 
-abstract class Observer {
-  void update(double temp, double humidity, double pressure);
-}
-
-abstract class DisplayElement {
-  void display();
-}
-
-class CurrentConditionsDisplay implements Observer, DisplayElement {
-  double _temperature = 0;
-  double _humidity = 0;
-  late WeatherData _weatherData;
-
-  // constructor 
-  CurrentConditionsDisplay(WeatherData weatherData) {
-    this._weatherData = weatherData;
-    _weatherData.registerObserver(this);
-  }
-  @override
-  void update(double temperature, double humidity, double pressure) {
-    this._temperature = temperature;
-    this._humidity = humidity;
-    display();
-  }
-  @override
-  void display() {
-    print('Current conditions: $_temperature F degrees and $_humidity % humidity');
-  }
-}
-
 void main() {
   WeatherData weatherData = WeatherData();
 
+  // dart thinks these are not being used but they are through the observer pattern
   CurrentConditionsDisplay currentConditionsDisplay = CurrentConditionsDisplay(weatherData);
+  HeatIndexDisplay heatIndexDisplay = HeatIndexDisplay(weatherData);
 
-  weatherData.setMeasurements(80, 65, 30.4);
+  weatherData.setMeasurements(100, 65, 30.4);
   weatherData.setMeasurements(82, 70, 29.2);
   weatherData.setMeasurements(78, 90, 29.2);
 }
