@@ -30,10 +30,10 @@ class HeatIndexDisplay implements Observer, DisplayElement {
   }
 
   @override
-  void update(double temperature, double humidity, double pressure) {
+  void update() { // we now get data we want instead of receiving all 
     // calculate heat index here
-    this._temperature = temperature;
-    this._humidity = humidity;
+    this._temperature = _weatherData.getTemperature();
+    this._humidity = _weatherData.getHumidity();
 
     _heatIndex = calculateHeatIndex(this._temperature, this._humidity);
     display();

@@ -11,9 +11,9 @@ class CurrentConditionsDisplay implements Observer, DisplayElement {
     _weatherData.registerObserver(this);
   }
   @override
-  void update(double temperature, double humidity, double pressure) {
-    this._temperature = temperature;
-    this._humidity = humidity;
+  void update() {
+    this._temperature = _weatherData.getTemperature();
+    this._humidity = _weatherData.getHumidity();
     display();
   }
   @override

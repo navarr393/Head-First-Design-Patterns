@@ -16,6 +16,9 @@ dart run Chapter_1/mini_duck_simlulator.dart
 
 # Strategy Pattern - Adventure Game
 dart run Chapter_1/Adventure_Game/run_simulator.dart
+
+# Observer Pattern - Weather Station
+dart run Chapter_2/weather_data.dart
 ```
 
 ## Code Architecture
@@ -43,22 +46,31 @@ dart run Chapter_1/Adventure_Game/run_simulator.dart
 - **Dynamic Behavior**: Weapons can be swapped at runtime
 
 ### Observer Pattern Architecture (Chapter_2/)
-- **Subject Interface**: Defines observer management contract
-- **WeatherData**: Subject implementation (in progress)
-- **Observer Interface**: Defines update contract (to be implemented)
+- **Subject Interface**: Defines observer management contract (`registerObserver`, `removeObserver`, `notifyObservers`)
+- **Observer Interface**: Defines update contract (`update` method receives temperature, humidity, pressure)
+- **DisplayElement Interface**: Common display contract for all display components
+- **WeatherData**: Concrete subject managing weather measurements and observer notifications
+- **Display Components**: `CurrentConditionsDisplay`, `HeatIndexDisplay` implement Observer and DisplayElement
+- **Push Model**: Subject pushes all data to observers (temperature, humidity, pressure)
+- **Automatic Registration**: Display components register themselves with subject in constructor
 
 ## Key Design Principles Demonstrated
 
-- **Encapsulate What Varies**: Behaviors isolated in separate strategy classes
+- **Encapsulate What Varies**: Behaviors isolated in separate strategy classes; observer management encapsulated in Subject interface
 - **Composition over Inheritance**: Objects composed with behaviors rather than inheriting them
 - **Program to Interfaces**: Code depends on abstractions, not concrete implementations
 - **Open/Closed Principle**: New behaviors can be added without modifying existing classes
-- **Loose Coupling**: Minimal dependencies between objects that interact
+- **Loose Coupling**: Minimal dependencies between objects that interact; observers only depend on Subject interface
+- **One-to-Many Dependencies**: Observer pattern demonstrates how one subject can notify multiple observers
+- **Push vs Pull**: Current implementation uses push model where subject sends all data to observers
 
 ## Java to Dart Translation Patterns
 
-- Java `interface` → Dart `abstract class`
+- Java `interface` → Dart `abstract class` with abstract methods
 - Private members use `_` prefix instead of `private` keyword
 - Constructor syntax is more concise in Dart
-- Arrow functions for single-expression methods
+- Arrow functions for single-expression methods (`void performFly() => flyBehavior.fly()`)
 - Sound null safety enabled by default
+- `late` keyword for variables initialized after declaration
+- Multiple interface implementation using `implements` keyword
+- Required named parameters in constructors for better API design

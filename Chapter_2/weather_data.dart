@@ -11,8 +11,8 @@ abstract class Subject {
 }
 
 abstract class Observer {
-  void update(double temp, double humidity, double pressure);
-}
+  void update(); // no arguments that way observers get whatever they need.
+}                // instead of receiving all the data at once, no matter what.
 
 abstract class DisplayElement {
   void display();
@@ -34,7 +34,7 @@ class WeatherData implements Subject {
 
   void notifyObservers() {
     for (Observer o in _observers) {
-      o.update(_temperature, _humidity, _pressure);
+      o.update();
     }
   }
 
