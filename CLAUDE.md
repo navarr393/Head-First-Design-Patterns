@@ -8,11 +8,11 @@ This repository contains Dart implementations of classic design patterns from "H
 
 ## Development Commands
 
-This is a simple Dart project without package configuration. Run examples directly:
+This is a simple Dart project without package configuration or dependencies. Run examples directly (no `dart pub get` needed):
 
 ```bash
 # Strategy Pattern - Duck Simulator
-dart run Chapter_1/mini_duck_simlulator.dart
+dart run Chapter_1/mini_duck_simulator.dart
 
 # Strategy Pattern - Adventure Game
 dart run Chapter_1/Adventure_Game/run_simulator.dart
@@ -24,10 +24,11 @@ dart run Chapter_2/weather_data.dart
 ## Code Architecture
 
 ### Chapter Structure
-- **Chapter_1/**: Strategy Pattern implementations
+- **Chapter_1/**: Strategy Pattern implementations (complete)
   - Duck simulator (main example)
   - Adventure game (design puzzle)
-- **Chapter_2/**: Observer Pattern (in progress)
+- **Chapter_2/**: Observer Pattern (complete)
+- **Chapter_3/**: Future pattern implementations (placeholder)
 
 ### Strategy Pattern Architecture (Chapter_1/)
 

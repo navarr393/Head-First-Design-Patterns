@@ -32,6 +32,12 @@ The famous duck example that introduces:
   - Strive for loosely coupled designs between objects that interact.
   - Loosley coupled objects are objects that are not dependent of other objects.
 
+## Chapter 3: The Decorator Pattern
+- **Definition**: Attaches additional responsabilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality. 
+- **Key Concepts**: 
+  - 
+  - 
+
 ## Running the Examples
 
 To run the complete Strategy Pattern example:
