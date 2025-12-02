@@ -1,9 +1,32 @@
+// enum to choose the size of beverage
+enum Size {TALL, GRANDE, VENTI} // enums are top level in dart, not a class like Java we cant define inside Beverage
+
 abstract class Beverage {
+  Size size = Size.TALL;
   String description = 'Unknown Beverage';
 
   String getDescription() => description;
 
   double cost(); // needs to be implemented in the subclasses
+
+  double _applySizedAdjustment(double baseAmount) {
+    switch (getSize()) {
+      case (Size.TALL):
+        return baseAmount - 0.05;
+      case (Size.GRANDE):
+        return baseAmount;
+      case (Size.VENTI):
+        return baseAmount + 0.05;
+    }
+  }
+
+  void setSize(Size size) { // takes in a Size 
+    this.size = size;
+  }
+
+  Size getSize() {  // return the size of the beverage
+    return this.size;
+  }
 
 }
 
@@ -11,9 +34,15 @@ abstract class CondimentDecorator extends Beverage {
   late Beverage beverage;
   
   String getDescription() {
-    return beverage.description;
+    return beverage.getDescription();
   }
-  
+
+  Size getSize() {
+    return beverage.getSize();
+  }
+  void setSize(Size size) {
+    beverage.setSize(size); // send the size to the beverage wheather is called at the beginnig or end
+  }
 }
 
 class Espresso extends Beverage {
@@ -22,7 +51,7 @@ class Espresso extends Beverage {
     description = 'Espresso';
   }
 
-  double cost() => 1.99;
+  double cost() => _applySizedAdjustment(1.99);
 }
 
 class HouseBlend extends Beverage {
@@ -30,7 +59,7 @@ class HouseBlend extends Beverage {
     description = 'House Blend Coffee';
   }
 
-  double cost() => 0.89;
+  double cost() => _applySizedAdjustment(0.89);
 }
 
 class DarkRoast extends Beverage {
@@ -39,7 +68,7 @@ class DarkRoast extends Beverage {
     description = 'Dark Roast Coffee';
   }
 
-  double cost() => 0.99;
+  double cost() => _applySizedAdjustment(0.99);
 }
 
 class Decaf extends Beverage {
@@ -47,7 +76,7 @@ class Decaf extends Beverage {
     description = 'Decaf Coffee';
   }
 
-  double cost() => 1.05;
+  double cost() => _applySizedAdjustment(1.05);
 }
 
 class Mocha extends CondimentDecorator {
@@ -59,8 +88,12 @@ class Mocha extends CondimentDecorator {
     return beverage.getDescription() + ', Mocha'; // get the lastly saved description and add 'Mocha'
   }
 
+  Size getSize() {
+    return beverage.getSize();
+  }
+
   double cost() {
-    return beverage.cost() + 0.20;
+    return beverage.cost() + _applySizedAdjustment(0.20);
   }
 }
 
@@ -74,7 +107,7 @@ class Soy extends CondimentDecorator {
   }
 
   double cost() {
-    return beverage.cost() + 0.15;
+    return beverage.cost() + _applySizedAdjustment(0.15);
   }
 }
 
@@ -88,7 +121,7 @@ class Whip extends CondimentDecorator {
   }
 
   double cost() {
-    return beverage.cost() + 0.10;
+    return beverage.cost() + _applySizedAdjustment(0.10);
   }
 }
 
@@ -102,7 +135,7 @@ class SteamedMilk extends CondimentDecorator {
   }
 
   double cost() {
-    return beverage.cost() + 0.10;
+    return beverage.cost() + _applySizedAdjustment(0.10);
   }
 }
 
@@ -123,6 +156,20 @@ void main() {
   beverage3 = Mocha(beverage3); // add mocha
   beverage3 = Whip(beverage3); // add whip
   print(beverage3.getDescription() + ' \$' + beverage3.cost().toString());
+
+  Beverage  beverage4 = HouseBlend();
+  beverage4.setSize(Size.VENTI);
+  print(beverage4.cost());
+  beverage4 = Mocha(beverage4);
+  beverage4 = Mocha(beverage4);
+  print(beverage4.cost());
+
+  Beverage  beverage5 = HouseBlend();
+  print(beverage5.cost());
+  beverage5 = Mocha(beverage5);
+  beverage5 = Mocha(beverage5);
+  beverage5.setSize(Size.VENTI);
+  print(beverage5.cost());
 
 
 }
