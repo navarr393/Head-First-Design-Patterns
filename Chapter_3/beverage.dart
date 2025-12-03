@@ -105,6 +105,10 @@ class Soy extends CondimentDecorator {
   String getDescription() {
     return beverage.getDescription() + ', Soy';
   }
+  
+  Size getSize() {
+    return beverage.getSize();
+  }
 
   double cost() {
     return beverage.cost() + _applySizedAdjustment(0.15);
@@ -118,6 +122,10 @@ class Whip extends CondimentDecorator {
 
   String getDescription() {
     return beverage.getDescription() + ', Whip';
+  }
+
+  Size getSize() {
+    return beverage.getSize();
   }
 
   double cost() {
@@ -134,6 +142,10 @@ class SteamedMilk extends CondimentDecorator {
     return beverage.getDescription() + ', Steamed Milk';
   }
 
+  Size getSize() {
+    return beverage.getSize();
+  }
+  
   double cost() {
     return beverage.cost() + _applySizedAdjustment(0.10);
   }

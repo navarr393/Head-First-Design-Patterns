@@ -35,8 +35,10 @@ The famous duck example that introduces:
 ## Chapter 3: The Decorator Pattern
 - **Definition**: Attaches additional responsabilities to an object dynamically. Decorators provide a flexible alternative to subclassing for extending functionality. 
 - **Key Concepts**: 
-  - 
-  - 
+  - This design pattern is an Open-Closed Principle, meaning that classes should be open for extension, but closed for modification.
+  - Decorator classes mirror the Object type they are decorating.
+  - You can wrap components with any number of decorators.
+  - Decorators can result in many small objects in our desing, and overuse can be complex.
 
 ## Running the Examples
 
