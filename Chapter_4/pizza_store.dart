@@ -34,6 +34,8 @@ abstract class PizzaStore {
 
 // create own Pizza stores
 class NYPizzaStore extends PizzaStore {
+  // must pass an argument since PizzaStore takes one, pass the same type
+  NYPizzaStore(SimplePizzaFactory factory) : super(factory);
 
   Pizza createPizza(String type) {
     if (type == 'cheese') {
@@ -62,6 +64,71 @@ class NYStyleClamPizza extends Pizza {
 }
 
 class NYStyleVeggiePizza extends Pizza {
+
+}
+
+class ChicagoStylePizzaStore extends PizzaStore {
+  ChicagoStylePizzaStore(SimplePizzaFactory factory) : super(factory);
+
+  Pizza createPizza(String type) {
+    if (type == 'cheese') {
+      return ChicagoStyleCheesePizza();
+    } else if (type == 'peperoni') {
+      return ChicagoStylePeperoniPizza();
+    } else if (type == 'clam') {
+      return ChicagoStyleClamPizza();
+    } else if (type == 'veggie') {
+      return ChicagoStyleVeggiePizza();
+    }
+    throw ArgumentError('Unknown pizza style: $type');
+  }
+}
+
+class ChicagoStyleCheesePizza extends Pizza {
+
+}
+
+class ChicagoStylePeperoniPizza extends Pizza {
+
+}
+
+class ChicagoStyleClamPizza extends Pizza {
+
+}
+
+class ChicagoStyleVeggiePizza extends Pizza {
+
+}
+
+class CaliforniaStylePizzaStore extends PizzaStore {
+  CaliforniaStylePizzaStore(SimplePizzaFactory factory) : super(factory);
+  Pizza createPizza(String type) {
+    if (type == 'cheese') {
+      return CaliforniaStyleCheesePizza();
+    } else if (type == 'peperoni') {
+      return CaliforniaStylePeperoniPizza();
+    } else if (type == 'clam') {
+      return CaliforniaStyleClamPizza();
+    } else if (type == 'veggie') {
+      return CaliforniaStyleVeggiePizza();
+    }
+    throw ArgumentError('Unknown Pizza type: $type');
+  }
+}
+
+class CaliforniaStyleCheesePizza extends Pizza {
+
+}
+
+class CaliforniaStylePeperoniPizza extends Pizza {
+
+}
+
+class CaliforniaStyleClamPizza extends Pizza {
+
+}
+
+class CaliforniaStyleVeggiePizza extends Pizza {
 
 }
 
