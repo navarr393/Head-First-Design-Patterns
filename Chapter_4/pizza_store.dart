@@ -9,11 +9,41 @@ abstract class Pizza { // any abstract class needs to extended by subclasses, an
 }
 
 abstract class PizzaStore {
+  String name = '';
+  String dough = '';
+  String sauce = '';
+  List<String> toppings = [];
   late SimplePizzaFactory factory;
 
   // constructor 
   PizzaStore(SimplePizzaFactory factory) {
     this.factory = factory;
+  }
+
+  void prepare() {
+    print('Preparing $name');
+    print('Tossing dough...');
+    print('Adding sauce...');
+    print('Adding toppings...');
+    for (String topping in toppings) {
+      print(topping);
+    }
+  }
+
+  void bake() {
+    print('Bake for 25 minutes at 350');
+  }
+
+  void cut() {
+    print('Cutting the pizza into diagonal pieces');
+  }
+
+  void box() {
+    print('Place pizza into official pizza store box');
+  }
+
+  String getName() {
+    return name;
   }
 
   Pizza orderPizza(String type) {
@@ -52,7 +82,13 @@ class NYPizzaStore extends PizzaStore {
 }
 
 class NYStyleCheesePizza extends Pizza {
+  NYStyleCheesePizza() {
+    String name = 'NY Style Sauce and Cheese Pizza';
+    String dough = 'Thin Crust Dough';
+    String sauce = 'Marinara Sauce';
 
+    toppings.add('Grated Reggiano Cheese');
+  }
 }
 
 class NYStylePepperoniPizza extends Pizza {
