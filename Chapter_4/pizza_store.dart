@@ -1,30 +1,16 @@
 abstract class Pizza { // any abstract class needs to extended by subclasses, and cannot be instantiated directly
   String type = "";
-
-  String prepare() => 'Preparing your pizza...';
-  String bake() => 'Baking your pizza..';
-  String cut() => 'Cutting your pizza...';
-  String box() => 'Boxing your pizza...';
-
-}
-
-abstract class PizzaStore {
   String name = '';
   String dough = '';
   String sauce = '';
   List<String> toppings = [];
   late SimplePizzaFactory factory;
 
-  // constructor 
-  PizzaStore(SimplePizzaFactory factory) {
-    this.factory = factory;
-  }
-
   void prepare() {
     print('Preparing $name');
     print('Tossing dough...');
     print('Adding sauce...');
-    print('Adding toppings...');
+    print('Adding toppings:');
     for (String topping in toppings) {
       print(topping);
     }
@@ -46,6 +32,9 @@ abstract class PizzaStore {
     return name;
   }
 
+}
+
+abstract class PizzaStore {
   Pizza orderPizza(String type) {
     late Pizza pizza;
 
@@ -65,7 +54,6 @@ abstract class PizzaStore {
 // create own Pizza stores
 class NYPizzaStore extends PizzaStore {
   // must pass an argument since PizzaStore takes one, pass the same type
-  NYPizzaStore(SimplePizzaFactory factory) : super(factory);
 
   Pizza createPizza(String type) {
     if (type == 'cheese') {
@@ -82,10 +70,11 @@ class NYPizzaStore extends PizzaStore {
 }
 
 class NYStyleCheesePizza extends Pizza {
+
   NYStyleCheesePizza() {
-    String name = 'NY Style Sauce and Cheese Pizza';
-    String dough = 'Thin Crust Dough';
-    String sauce = 'Marinara Sauce';
+    name = 'NY Style Sauce and Cheese Pizza';
+    dough = 'Thin Crust Dough';
+    sauce = 'Marinara Sauce';
 
     toppings.add('Grated Reggiano Cheese');
   }
@@ -104,7 +93,6 @@ class NYStyleVeggiePizza extends Pizza {
 }
 
 class ChicagoStylePizzaStore extends PizzaStore {
-  ChicagoStylePizzaStore(SimplePizzaFactory factory) : super(factory);
 
   Pizza createPizza(String type) {
     if (type == 'cheese') {
@@ -121,6 +109,18 @@ class ChicagoStylePizzaStore extends PizzaStore {
 }
 
 class ChicagoStyleCheesePizza extends Pizza {
+  ChicagoStyleCheesePizza() {
+    name = 'Chicago Style Deep Dish Cheese Pizza';
+    dough = 'Extra Thick Crust Dough';
+    sauce = 'Plum Tomato Sauce';
+
+    toppings.add('Shredded Mozzarella Cheese');
+  }
+
+  @override
+  void cut() {
+    print('Cutting the pizza into sqaure slices');
+  }
 
 }
 
@@ -137,7 +137,6 @@ class ChicagoStyleVeggiePizza extends Pizza {
 }
 
 class CaliforniaStylePizzaStore extends PizzaStore {
-  CaliforniaStylePizzaStore(SimplePizzaFactory factory) : super(factory);
   Pizza createPizza(String type) {
     if (type == 'cheese') {
       return CaliforniaStyleCheesePizza();
@@ -200,4 +199,15 @@ class SimplePizzaFactory {
     }
     return pizza;
   }
+}
+
+void main() {
+  PizzaStore nyStore = NYPizzaStore();
+  PizzaStore chicagoStore = ChicagoStylePizzaStore();
+
+  Pizza pizza = nyStore.orderPizza('cheese');
+  print('Ethan ordered a ${pizza.getName()}\n');
+
+  pizza = chicagoStore.orderPizza('cheese');
+  print('Joel ordered a ${pizza.getName()}\n');
 }
